@@ -28,6 +28,8 @@ public class LoginPage extends HomePage{
     WebElement selectProduct;
     @FindBy(css = "button[id='add-to-cart-button']")
     WebElement addToCart;
+    @FindBy(id="quantity")
+    WebElement quantity;
     @FindBy(xpath = "//span[@class='amount']")
     WebElement cartAmount;
     @FindBy(xpath = "//input[@value='Empty Cart']")
@@ -66,21 +68,26 @@ public class LoginPage extends HomePage{
 
     public void addToCart() {
         selectProduct.click();
+        quantity.clear();
+        quantity.sendKeys("3");
         addToCart.click();
 
     }
-    public boolean verifyAddToCart() {
+    public String verifyAddToCart() {
         String amount = cartAmount.getText();
+        String value = amount.substring(1);
+        //double totalAmt = Double.parseDouble(value);
         Boolean amountInCart = amount.isBlank();
-        return amountInCart;
+        System.out.println(value);
+        return value;
     }
     public void deleteProductInCart() {
         emptyCart.click();
     }
-    public void verifyDeleteProduct() {
+    public String verifyDeleteProduct() {
         String delete = emptyAlert.getText();
-        System.out.println(delete);
-        Assert.assertEquals("Your cart is empty", delete);
+        return delete;
+
 
     }
 }
