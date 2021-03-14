@@ -67,15 +67,18 @@ public class SpreeTestCase extends SpreeBaseClass {
     }
 
     @Test(dataProvider = "userDetail")
-    public void addToCartAndEmptyTheCart(String email,String password) throws InterruptedException {
+    public void addToCartAndEmptyTheCart(String email,String password)  {
         HomePage homePg = new HomePage(driver);
         LoginPage loginPg = new LoginPage(driver);
         homePg.navigateToLogin();
         loginPg.logInSpree(email,password);
         homePg.searchKeyword("Ruby on Rails Mug");
         loginPg.addToCart();
-        boolean verifyItemIncart =loginPg.verifyAddToCart();
+        String amount =  loginPg.verifyAddToCart();
+        Assert.assertEquals("41.97",amount);
         loginPg.deleteProductInCart();
+        String deleteMsg = loginPg.verifyDeleteProduct();
+        Assert.assertEquals("Your cart is empty", deleteMsg);
         loginPg.logOutSpree();
     }
 }

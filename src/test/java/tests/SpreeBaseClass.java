@@ -30,7 +30,8 @@ public class SpreeBaseClass implements ITestListener {
     public void tearDown() {
         driver.quit();
     }
-     public void takeSnapShot(WebDriver webdriver, String fileWithPath) throws IOException {
+
+    public void takeSnapShot(WebDriver webdriver, String fileWithPath) throws IOException {
         Date d = new Date();
        TakesScreenshot scrShot = ((TakesScreenshot)driver);
        try {

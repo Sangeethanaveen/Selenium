@@ -1,11 +1,8 @@
 package listeners;
-
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.annotations.Listeners;
 import tests.SpreeBaseClass;
-
 import java.io.IOException;
 
 public class CustomListeners extends SpreeBaseClass implements ITestListener {
